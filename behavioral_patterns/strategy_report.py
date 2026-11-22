@@ -45,7 +45,7 @@ class CSVFormatStrategy(ReportFormatStrategy):
 
     def generate(self, data: list[dict]) -> str:
         output = io.StringIO(newline="")
-        writer = csv.DictWriter(output, fieldnames=["name", "value"])
+        writer = csv.DictWriter(output, fieldnames=["name", "value"], lineterminator="\n")
         writer.writeheader()
         writer.writerows(data)
         return output.getvalue().rstrip("\r\n")
