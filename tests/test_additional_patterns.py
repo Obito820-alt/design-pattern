@@ -7,7 +7,7 @@ from structural_patterns.decorator_pattern import (
     InsuranceDecorator, PremiumMemberDecorator,
 )
 from behavioral_patterns.strategy_report import (
-    CSVFormatStrategy, HTMLFormatStrategy, JSONFormatStrategy, PDFFormatStrategy,
+    CSVFormatStrategy, ExcelFormatStrategy, HTMLFormatStrategy, JSONFormatStrategy, PDFFormatStrategy,
     ReportGenerator,
 )
 from behavioral_patterns.template_method_pipeline import (
@@ -52,6 +52,12 @@ class StrategyPatternTests(unittest.TestCase):
         self.assertEqual(self.generator.generate_report(), "name,value\nSales Q1,15000")
         self.generator.set_strategy(JSONFormatStrategy())
         self.assertEqual(json.loads(self.generator.generate_report()), self.data)
+
+    def test_excel_strategy(self):
+        self.generator.set_strategy(ExcelFormatStrategy())
+        output = self.generator.generate_report()
+        self.assertIn("Name\\tValue", output)
+        self.assertIn("Sales Q1\\t15000", output)
 
     def test_html_extension_without_changing_context(self):
         self.generator.set_strategy(HTMLFormatStrategy())
