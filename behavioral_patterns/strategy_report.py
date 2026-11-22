@@ -110,7 +110,7 @@ if __name__ == "__main__":
         {"name": "Sales Q4", "value": 25000},
     ]
     generator = ReportGenerator(data)
-    for strategy in (PDFFormatStrategy(), CSVFormatStrategy(),
+    for strategy in (PDFFormatStrategy(), ExcelFormatStrategy(), CSVFormatStrategy(),
                      JSONFormatStrategy(), HTMLFormatStrategy()):
         generator.set_strategy(strategy)
         print(f"=== {strategy.__class__.__name__} ===")
