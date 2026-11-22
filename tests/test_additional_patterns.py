@@ -56,8 +56,8 @@ class StrategyPatternTests(unittest.TestCase):
     def test_excel_strategy(self):
         self.generator.set_strategy(ExcelFormatStrategy())
         output = self.generator.generate_report()
-        self.assertIn("Name\\tValue", output)
-        self.assertIn("Sales Q1\\t15000", output)
+        self.assertIn("Name\tValue", output)
+        self.assertIn("Sales Q1\t15000", output)
 
     def test_html_extension_without_changing_context(self):
         self.generator.set_strategy(HTMLFormatStrategy())
